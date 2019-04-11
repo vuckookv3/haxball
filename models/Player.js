@@ -15,7 +15,7 @@ const PlayerSchema = new Schema({
 
 const isInArrayM = (arr, id) => arr.some(e => e.equals(id));
 
-PlayerSchema.methods.stats = async function () {
+PlayerSchema.methods.getStats = async function () {
     const me = this._id;
 
     const matches = await model('Match').find({ $or: [{ redTeam: this._id }, { blueTeam: this._id }] }).lean().exec();

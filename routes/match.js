@@ -25,10 +25,14 @@ router.get('/balance', aW(async (req, res) => {
     if (!players) throw new AppError(400);
     players = players.split(',')
     let users = await Player.find({ _id: { $in: players } }).exec();
-    let stats = users.map(e => e.stats())
+    let stats = users.map(e => e.getStats())
     stats = await Promise.all(stats);
 
-    users.sort((a, b) => a.stats.victories - b.stats.victories || a.stats.goals - b.stats.goals)
+    users = users.map(e => e.toObject())
+    users = users.sort((a, b) => {
+        const e = a.stats.victories - b.stats.victories
+        return e;
+    })
     const redTeam = [];
     const blueTeam = [];
 

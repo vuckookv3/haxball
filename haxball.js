@@ -6,8 +6,8 @@ const room = HBInit({
 	roomName: "RiiTech",
 	playerName: 'RiiTech BOT',
 	maxPlayers: 8,
-	password: '123',
-	public: false
+	password: 'riitech2',
+	public: true
 });
 
 room.setCustomStadium(futsal3);
@@ -124,7 +124,7 @@ const balance = async () => {
 	if (playerIds.length % 2 !== 0) {
 		return room.sendChat(`Neparan broj igraca`);
 	}
-	if (playerIds.length !== 6 || playerIds.length !== 8) {
+	if (playerIds.length !== 6 && playerIds.length !== 8) {
 		return room.sendChat(`Potrebno je 6 ili 8 igraca za ranked game.`)
 	}
 	playerIds = playerIds.join(',')

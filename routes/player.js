@@ -23,7 +23,7 @@ router.post('/', aW(async (req, res) => {
 router.get('/:name', aW(async (req, res) => {
     const found = await Player.findOne({ name: req.params.name }).exec();
     if (!found) throw new AppError(404);
-    await found.stats();
+    await found.getStats();
     res.json(found);
 }));
 
