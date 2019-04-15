@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 const helmet = require('helmet');
 const { AppError } = require('./helpers');
 const { dbHost } = require('./config');
@@ -12,6 +13,8 @@ const app = express();
 const dbOptions = { useNewUrlParser: true, useCreateIndex: true };
 mongoose.connect(dbHost, dbOptions).catch(err => console.error(`Error connecting to DB:\n${err}`));
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(helmet());
 app.use(express.json());

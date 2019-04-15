@@ -46,7 +46,9 @@ room.onPlayerJoin = async function (player) {
 	if (p.status == 404) {
 		room.sendChat(`Dobrodosao ${player.name}. Ovo ime je slobodno. Zauzmi ga sa komandom: !register <sifra>`, player.id);
 	} else {
-		room.sendChat(`Dobrodosao ${player.name}. Prijavi se sa: !login <sifra>`, player.id);
+		authPlayers[player.name] = p;
+		// room.sendChat(`Dobrodosao ${player.name}. Prijavi se sa: !login <sifra>`, player.id);
+		room.sendChat(`Dobrodosao ${player.name}. Automatski si ulogovan`, player.id);
 	}
 
 	// kick ako se nije auth
@@ -71,7 +73,7 @@ room.onPlayerJoin = async function (player) {
 
 room.onPlayerLeave = function (player) {
 	delete authPlayers[player.name];
-	updateAdmins();
+	updateAdmins();	
 }
 
 const isOwnGoal = (team, player) => team !== player.team ? true : false;

@@ -25,24 +25,39 @@ router.get('/balance', aW(async (req, res) => {
     if (!players) throw new AppError(400);
     players = players.split(',')
     let users = await Player.find({ _id: { $in: players } }).exec();
-    let stats = users.map(e => e.getStats())
-    stats = await Promise.all(stats);
+    await Promise.all(users.map(e => e.getStats()));
 
     users = users.map(e => e.toObject())
     users = users.sort((a, b) => {
-        const e = a.stats.victories - b.stats.victories
+        const e =  Math.round(a.stats.victories / a.stats.matches * 100) -  Math.round(b.stats.victories / b.stats.matches * 100)
         return e;
     })
-    const redTeam = [];
-    const blueTeam = [];
+    users = users.reverse();
+    let redTeam = [];
+    let blueTeam = [];
+    // const newUsers = [...users];
+    // let i = 0;
 
-    for (let i = 0; i < users.length; i++) {
-        if (i % 2 == 0) {
-            redTeam.push(users[i].name)
-        } else {
-            blueTeam.push(users[i].name)
-        }
+    if (players.length == 6) {
+        redTeam = [users[0].name, users[3].name, users[4].name]
+        blueTeam = [users[1].name, users[2].name, users[5].name];
+    } else if (players.length == 8) {
+        redTeam = [users[0].name, users[3].name, users[4].name, users[7].name]
+        blueTeam = [users[1].name, users[2].name, users[5].name, users[6].name]
     }
+
+    // for (let i = 0; i < newUsers.length; i++) {
+    //     const first = newUsers.shift();
+    //     const last = newUsers.pop();
+    //     if (newUsers.length > 0) {
+
+    //     }
+    //     // if (i % 2 == 0) {
+    //     //     redTeam.push(users[i].name)
+    //     // } else {
+    //     //     blueTeam.push(users[i].name)
+    //     // }
+    // }
 
     res.json({ redTeam, blueTeam })
 }))

@@ -18,6 +18,25 @@ router.post('/', aW(async (req, res) => {
     res.json(created);
 }));
 
+router.get('/table', aW(async (req, res) => {
+    let found = await Player.find({}).select('name').exec();
+    if (!found) throw new AppError(404);
+    await Promise.all(found.map(e => {
+        return e.getStats()
+    }));
+    found = found.map(e => e.toObject())
+    found.forEach(e => {
+        e.stats.score = Math.round(e.stats.victories / e.stats.matches * 100)
+        e.stats.goalsAvg = parseFloat((e.stats.goals / e.stats.matches).toFixed(1))
+        e.stats.goalsPerMinute = parseFloat((e.stats.goals / e.stats.matches / 14).toFixed(1))
+        e.stats.ownGoalsAvg = parseFloat((e.stats.ownGoals / e.stats.matches).toFixed(1))
+    })
+    found.sort((a, b) => {
+        return b.stats.score - a.stats.score
+    });
+    res.render('table', { found });
+}))
+
 
 // SHOW
 router.get('/:name', aW(async (req, res) => {

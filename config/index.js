@@ -1,5 +1,5 @@
 const c = {};
 
-c.dbHost = `mongodb://127.0.0.1:27017/haxball`
+c.dbHost = `mongodb://dzambo:riitech032@ds135726.mlab.com:35726/haxball`
 
 module.exports = c;

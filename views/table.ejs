@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Haxball</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+    <style>
+        #example td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th id="sort">Score</th>
+                <th>Matches</th>
+                <th>Victories</th>
+                <th>Defeats</th>
+                <th>Goals</th>
+                <th>Goals per Game</th>
+                <th>Own Goals</th>
+            </tr>
+        </thead>
+        <% for (var i = 0; i < found.length; i++) { %>
+        <tr>
+            <td><%= found[i].name %> </td>
+            <td><%= found[i].stats.score %> </td>
+            <td><%= found[i].stats.matches %> </td>
+            <td><%= found[i].stats.victories %> </td>
+            <td><%= found[i].stats.defeats %> </td>
+            <td><%= found[i].stats.goals %> </td>
+            <td><%= found[i].stats.goalsAvg %> </td>
+            <td><%= found[i].stats.ownGoals %> </td>
+        </tr>
+
+        <% }; %>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable();
+            table
+                .order([1, 'dsc'])
+                .draw();
+        });
+    </script>
+</body>
+
+</html>
