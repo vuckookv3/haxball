@@ -14,7 +14,7 @@ room.setCustomStadium(futsal3);
 room.setScoreLimit(14);
 room.setTimeLimit(14);
 
-const server = `http://localhost:3000/api`;
+const server = `http://localhost:3050/api`;
 const bot = room.getPlayerList().find(e => e.id == 0);
 const authPlayers = {};
 let gameData = {};
@@ -47,6 +47,7 @@ room.onPlayerJoin = async function (player) {
 		room.sendChat(`Dobrodosao ${player.name}. Ovo ime je slobodno. Zauzmi ga sa komandom: !register <sifra>`, player.id);
 	} else {
 		authPlayers[player.name] = p;
+		authPlayers[player.name].id = player.id;
 		// room.sendChat(`Dobrodosao ${player.name}. Prijavi se sa: !login <sifra>`, player.id);
 		room.sendChat(`Dobrodosao ${player.name}. Automatski si ulogovan`, player.id);
 	}

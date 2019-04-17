@@ -29,7 +29,7 @@ router.get('/balance', aW(async (req, res) => {
 
     users = users.map(e => e.toObject())
     users = users.sort((a, b) => {
-        const e =  Math.round(a.stats.victories / a.stats.matches * 100) -  Math.round(b.stats.victories / b.stats.matches * 100)
+        const e = Math.round(a.stats.victories / a.stats.matches * 100) - Math.round(b.stats.victories / b.stats.matches * 100)
         return e;
     })
     users = users.reverse();
@@ -58,7 +58,7 @@ router.get('/balance', aW(async (req, res) => {
     //     //     blueTeam.push(users[i].name)
     //     // }
     // }
-
+    console.log({ redTeam, blueTeam })
     res.json({ redTeam, blueTeam })
 }))
 
