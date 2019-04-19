@@ -16,10 +16,14 @@
 </head>
 
 <body>
-
+    <div style="text-align: center">
+        <h2>Sezona traje mesec dana</h2>
+        <h3 id="season"></h3>
+    </div>
     <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Name</th>
                 <th id="sort">Score</th>
                 <th>Matches</th>
@@ -32,6 +36,15 @@
         </thead>
         <% for (var i = 0; i < found.length; i++) { %>
         <tr>
+            <% if (i == 0) { %>
+                <td style="background-color: gold"><%= i+1 %> <img src="/images/gold.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"> </td>
+            <% } else if (i == 1) { %>
+                <td style="background-color: silver"><%= i+1 %> <img src="/images/silver.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"></td>
+            <% } else if (i == 2) { %>
+                <td style="background-color: #cd7f32"><%= i+1 %> <img src="/images/bronze.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"></td>
+            <% } else { %>
+                <td><%= i+1 %></td>
+            <% } %>
             <td><%= found[i].name %> </td>
             <td><%= found[i].stats.score %> </td>
             <td><%= found[i].stats.matches %> </td>
@@ -41,7 +54,6 @@
             <td><%= found[i].stats.goalsAvg %> </td>
             <td><%= found[i].stats.ownGoals %> </td>
         </tr>
-
         <% }; %>
     </table>
 
@@ -51,9 +63,13 @@
         $(document).ready(function () {
             var table = $('#example').DataTable();
             table
-                .order([1, 'dsc'])
+                .order([0, 'asc'])
                 .draw();
         });
+        let myDate = new Date();
+        let lastDay = new Date(myDate.getFullYear(), myDate.getMonth() + 1, 0);
+        let seasonDate = `01. ${myDate.getMonth() + 1}. - ${lastDay.getDate()}. ${myDate.getMonth() + 1}. ${myDate.getFullYear()}.`;
+        $('#season').text(seasonDate)
     </script>
 </body>
 

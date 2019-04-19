@@ -20,6 +20,8 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use('/images', express.static(__dirname + '/images'));
+
 
 // router
 app.use('/api', indexRouter);
