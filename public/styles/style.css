@@ -1,0 +1,126 @@
+/* reset css */
+html,
+body,
+div,
+table {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:focus {
+  outline: 0;
+}
+
+h1,
+h2,
+h3,
+a,
+p,
+th,
+td {
+  color: white;
+}
+
+main {
+  background-color: rgba(31, 38, 42, 0.8);
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+body {
+  background-image: linear-gradient(135deg, #6d8c59 25%, #72915e 25%, #72915e 50%, #6d8c59 50%, #6d8c59 75%, #72915e 75%, #72915e 100%);
+  background-size: 84.85px 84.85px;
+  background-repeat: repeat;
+  padding: 20px;
+}
+
+table {
+  background-color: transparent;
+  border-bottom: unset;
+  overflow-x: auto;
+}
+
+.div-table {
+  overflow-x: auto;
+  width: 100%;
+  background-color: rgba(31, 38, 42, 0.9);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#example_length,
+#example_filter,
+#example_info,
+#example_paginate {
+  display: none;
+}
+
+h1 {
+  color: transparent;
+  font-weight: bold;
+  text-align: center;
+  background-color: black;
+  /* text-shadow: 0 0 1px black, 0 0 1px black; */
+  background-image: -webkit-linear-gradient(to bottom, #f75d6c, #ffcb4b);
+  /* For Chrome and Safari */
+  background-image: -moz-linear-gradient(to bottom, #f75d6c, #ffcb4b);
+  /* For old Fx (3.6 to 15) */
+  background-image: -ms-linear-gradient(to bottom, #f75d6c #ffcb4b);
+  /* For pre-releases of IE 10*/
+  background-image: -o-linear-gradient(to bottom, #f75d6c, #ffcb4b);
+  /* For old Opera (11.1 to 12.0) */
+  background-image: linear-gradient(to bottom, #f75d6c, #ffcb4b);
+  /* Standard syntax; must be last */
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 3rem;
+}
+
+h3 {
+  margin-top: 0px;
+}
+
+th,
+tr,
+.sorting_1 {
+  background-color: transparent !important;
+}
+
+th {
+  font-size: 1.2rem;
+}
+
+#example td {
+  text-align: center;
+}
+
+td img {
+  max-width: 32px;
+  max-height: 32px;
+}
+
+tr {
+  height: 55px;
+}
+
+.gold {
+  background-image: linear-gradient(to bottom right, rgba(253, 165, 1, 0.74), rgba(250, 213, 3, 0.719))
+}
+
+.silver {
+  background-image: linear-gradient(to bottom right, rgba(174, 174, 174, 0.5), rgba(238, 238, 238, 0.5))
+}
+
+.bronze {
+  background-image: linear-gradient(to bottom right, rgba(201, 119, 72, 0.5), rgba(201, 164, 134, 0.5))
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* cf0028 -> red border */

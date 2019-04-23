@@ -2,60 +2,67 @@
 <html>
 
 <head>
+    <title>Haxball - Score Table</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Haxball</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
-    <style>
-        #example td {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
-    <div style="text-align: center">
-        <h2>Sezona traje mesec dana</h2>
-        <h3 id="season"></h3>
-    </div>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th id="sort">Score</th>
-                <th>Matches</th>
-                <th>Victories</th>
-                <th>Defeats</th>
-                <th>Goals</th>
-                <th>Goals per Game</th>
-                <th>Own Goals</th>
-            </tr>
-        </thead>
-        <% for (var i = 0; i < found.length; i++) { %>
-        <tr>
-            <% if (i == 0) { %>
-                <td style="background-color: gold"><%= i+1 %> <img src="/images/gold.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"> </td>
-            <% } else if (i == 1) { %>
-                <td style="background-color: silver"><%= i+1 %> <img src="/images/silver.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"></td>
-            <% } else if (i == 2) { %>
-                <td style="background-color: #cd7f32"><%= i+1 %> <img src="/images/bronze.png" alt="gold medal" height="10%" width="auto" style="margin-left: 10px"></td>
-            <% } else { %>
-                <td><%= i+1 %></td>
-            <% } %>
-            <td><%= found[i].name %> </td>
-            <td><%= found[i].stats.score %> </td>
-            <td><%= found[i].stats.matches %> </td>
-            <td><%= found[i].stats.victories %> </td>
-            <td><%= found[i].stats.defeats %> </td>
-            <td><%= found[i].stats.goals %> </td>
-            <td><%= found[i].stats.goalsAvg %> </td>
-            <td><%= found[i].stats.ownGoals %> </td>
-        </tr>
-        <% }; %>
-    </table>
+    <main>
+        <h1>HaxBall</h1>
+        <h3 class="text-center">Season lasts for the month <span id="season"></span></h3>
+        <div class="div-table">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th id="sort">Score</th>
+                        <th>Matches</th>
+                        <th>Victories</th>
+                        <th>Defeats</th>
+                        <th>Goals</th>
+                        <th>Goals per Game</th>
+                        <th>Own Goals</th>
+                    </tr>
+                </thead>
+                <% for (var i = 0; i < found.length; i++) { %>
+                <% if (i == 0) { %>
+                <tr class="gold">
+                    <td>
+                        <img src="/images/gold.png" alt="gold medal" height="10%" width="auto">
+                    </td>
+                    <% } else if (i == 1) { %>
+                <tr class="silver">
+                    <td>
+                        <img src="/images/silver.png" alt="silver medal" height="10%" width="auto">
+                    </td>
+                    <% } else if (i == 2) { %>
+                <tr class="bronze">
+                    <td>
+                        <img src="/images/bronze.png" alt="bronze medal" height="10%" width="auto">
+                    </td>
+                    <% } else { %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <% } %>
+                    <td><strong><%= found[i].name %></strong></td>
+                    <td><%= found[i].stats.score %> </td>
+                    <td><%= found[i].stats.matches %> </td>
+                    <td><%= found[i].stats.victories %> </td>
+                    <td><%= found[i].stats.defeats %> </td>
+                    <td><%= found[i].stats.goals %> </td>
+                    <td><%= found[i].stats.goalsAvg %> </td>
+                    <td><%= found[i].stats.ownGoals %> </td>
+                </tr>
+                <% }; %>
+            </table>
+        </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
