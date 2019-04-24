@@ -17,6 +17,10 @@ const isInArrayM = (arr, id) => arr.some(e => e.equals(id));
 
 PlayerSchema.methods.getStats = async function () {
     const me = this._id;
+    
+    const date = new Date();
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
     const matches = await model('Match').find({ $or: [{ redTeam: this._id }, { blueTeam: this._id }] }).lean().exec();
     let goals = 0;
