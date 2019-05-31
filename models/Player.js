@@ -20,7 +20,7 @@ PlayerSchema.methods.getStats = async function () {
     
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999);
 
     const matches = await model('Match').find({ $or: [{ redTeam: this._id }, { blueTeam: this._id }], date: { $gt: firstDay, $lt: lastDay } }).lean().exec();
     let goals = 0;
