@@ -26,10 +26,10 @@ router.get('/table', aW(async (req, res) => {
     }));
     found = found.map(e => e.toObject())
     found.forEach(e => {
-        e.stats.score = Math.round(e.stats.victories / e.stats.matches * 100)
-        e.stats.goalsAvg = parseFloat((e.stats.goals / e.stats.matches).toFixed(1))
-        e.stats.goalsPerMinute = parseFloat((e.stats.goals / e.stats.matches / 14).toFixed(1))
-        e.stats.ownGoalsAvg = parseFloat((e.stats.ownGoals / e.stats.matches).toFixed(1))
+        e.stats.score = Math.round(e.stats.victories / e.stats.matches * 100) || 0
+        e.stats.goalsAvg = parseFloat((e.stats.goals / e.stats.matches).toFixed(1)) || 0
+        e.stats.goalsPerMinute = parseFloat((e.stats.goals / e.stats.matches / 14).toFixed(1)) || 0
+        e.stats.ownGoalsAvg = parseFloat((e.stats.ownGoals / e.stats.matches).toFixed(1)) || 0
     })
     found.sort((a, b) => {
         return b.stats.score - a.stats.score

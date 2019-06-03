@@ -14,7 +14,7 @@ room.setCustomStadium(futsal3);
 room.setScoreLimit(14);
 room.setTimeLimit(14);
 
-const server = `http://localhost:3050/api`;
+const server = `https://api.restit.in.rs/api`;
 const bot = room.getPlayerList().find(e => e.id == 0);
 const authPlayers = {};
 let gameData = {};
@@ -41,7 +41,10 @@ const updateAdmins = () => {
 
 room.onPlayerJoin = async function (player) {
 	updateAdmins();
-
+	// player.conn == 38392E3231362E32362E313839
+	// if (player.conn !== '38392E3231362E32362E313839') {
+	// 	return room.kickPlayer(player.id, 'Nisi RiiTechovac', true);
+	// }
 	const p = await fetch(`${server}/player/${player.name}`).then(res => res.json());
 	if (p.status == 404) {
 		room.sendChat(`Dobrodosao ${player.name}. Ovo ime je slobodno. Zauzmi ga sa komandom: !register <sifra>`, player.id);
@@ -74,7 +77,7 @@ room.onPlayerJoin = async function (player) {
 
 room.onPlayerLeave = function (player) {
 	delete authPlayers[player.name];
-	updateAdmins();	
+	updateAdmins();
 }
 
 const isOwnGoal = (team, player) => team !== player.team ? true : false;
@@ -164,6 +167,7 @@ room.onPlayerChat = (player, message) => {
 			switch (command[0]) {
 				case '!balance': balance(); break;
 				case '!start': startGame(); break;
+				case '!k': room.setPlayerTeam(whoTouchedLast.id, 0); break;
 			}
 		}
 
@@ -192,13 +196,13 @@ room.onGameTick = () => {
 }
 
 room.onPlayerActivity = (player) => {
-	if (player.name == 'sujdo') {
-		if (sujdotajmer > 5) {
-			room.sendChat(`Sujdo je ponovo aktivan posle ${sujdotajmer} sekundi.`)
-		}
+	// if (player.name == 'sujdo') {
+	// 	if (sujdotajmer > 5) {
+	// 		room.sendChat(`Sujdo je ponovo aktivan posle ${sujdotajmer} sekundi.`)
+	// 	}
 
-		sujdotajmer = 0;
-	}
+	// 	sujdotajmer = 0;
+	// }
 }
 
 room.onPlayerBallKick = (player) => {
@@ -208,9 +212,9 @@ room.onPlayerBallKick = (player) => {
 room.onPositionsReset = () => {
 	goalScored = false;
 
-	sujdotajmer = 0;
-	clearInterval(sujdoInterval);
-	sujdoIntervalStart();
+	// sujdotajmer = 0;		
+	// clearInterval(sujdoInterval);
+	// sujdoIntervalStart();
 }
 
 room.onGameStart = (byPlayer) => {
