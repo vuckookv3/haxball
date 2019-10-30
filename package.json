@@ -17,7 +17,7 @@
         "ejs": "^2.6.1",
         "express": "^4.16.4",
         "helmet": "^3.16.0",
-        "mongoose": "^5.4.19"
+        "mongoose": "^5.7.5"
     },
     "vulegen": true
 }
